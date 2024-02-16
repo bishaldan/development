@@ -10,8 +10,8 @@
         }
 
         body {
-            margin: 0px;
-            font-family: 'segoe ui';
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .nav {
@@ -29,7 +29,7 @@
             display: inline-block;
             font-size: 22px;
             color: #fff;
-            padding: 10px 10px 10px 10px;
+            padding: 10px;
         }
 
         .nav > .nav-btn {
@@ -44,7 +44,7 @@
 
         .nav > .nav-links > a {
             display: inline-block;
-            padding: 13px 10px 13px 10px;
+            padding: 13px 10px;
             text-decoration: none;
             color: #efefef;
         }
@@ -69,32 +69,40 @@
             margin-right: 20px;
             line-height: 1;
             margin-top: 2px;
-            width: 100px; 
+            width: 100px;
         }
 
-        .big-button-container {
-            text-align: center;
-            margin-top: 250px;
-        }
-
-        .big-button {
-            display: inline-block;
+        .vertical-div {
             width: 200px;
-            height: 100px;
-            background-color: #D9D9D9; /* Changed button color */
-            color: black; /* Changed text color */
-            text-align: center;
-            line-height: 100px;
-            margin: 0 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 18px;
+            height: 100%;
+            background-color: #FAFAF5;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            padding-top: 20px;
         }
 
-        .image-slider {
-            /* Your image slider styling goes here */
-            /* Example: */
-            margin-top: 100px;
+        .vertical-buttons {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        .vertical-buttons button {
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #D9D9D9;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .vertical-buttons button:hover {
+            background-color: #C0C0C0;
         }
     </style>
 </head>
@@ -119,16 +127,12 @@
         </div>        
     </div>
 
-    <div class="big-button-container">
-        <a href="chatbot_student.html" class="big-button">Chatbot</a>
-        <a href="#" class="big-button">Fee Status</a>
-        <a href="#" class="big-button">Announcement</a>
-    </div>
-
-    <div class="image-slider">
-        <img src="lo_pic.jpg" alt="Slider Image 1">
-        <img src="slider-image2.jpg" alt="Slider Image 2">
-        <img src="slider-image3.jpg" alt="Slider Image 3">
+    <!-- Vertical Div with Buttons -->
+    <div class="vertical-div">
+        <div class="vertical-buttons">
+            <button>Fee Status</button>
+            <button>Announcement</button>
+        </div>
     </div>
 </body>
 </html>

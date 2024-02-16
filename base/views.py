@@ -65,3 +65,7 @@ def login_page(request):
 
 def main_student(request):
     return render(request, 'base/main_student.html')
+
+
+def chatbot_student(request):
+    return render(request, 'base/chatbot_student.html')
