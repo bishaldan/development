@@ -1,46 +1,12 @@
-# from django.shortcuts import render,  redirect
-# from django.contrib.auth import authenticate, login, logout
-# from django.contrib import messages
-# from .models import Student  # Import your Student model
-# # Create your views here.
-
-
-# def home(request):
-#     return render(request,  'base/home.html')
-
-
-# def room(request):
-#     return render(request, 'base/room.html')
-
-
-# def login_page(request):
-#     return render(request, 'base/login.html')
-
-
-# def main_student(request):
-#     if request.method == "POST":
-#         email = request.POST["email"]  # Updated from "username" to "email"
-#         password = request.POST["password"]
-#         # Updated from "username" to "email"
-#         user = authenticate(request, email=email, password=password)
-#         if user is not None:
-#             login(request, user)
-#             return redirect('base/main_student.html')
-#         else:
-#             messages.error(
-#                 request, "Invalid email or password. Please try again.")
-#             return redirect('base/login.html')
-#     else:
-#         return render(request, 'base/main_student.html')
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render,  redirect
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Student  # Import your Student model
+# Create your views here.
 
 
 def home(request):
-    return render(request, 'base/home.html')
+    return render(request,  'base/home.html')
 
 
 def room(request):
@@ -48,17 +14,31 @@ def room(request):
 
 
 def login_page(request):
-    if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Check if there is a student with the provided email
+        try:
+            student = Student.objects.get(email=email)
+        except Student.DoesNotExist:
+            # If the student doesn't exist, show an error
+            error_message = "Invalid email or password"
+            return render(request, 'base/login.html', {'error_message': error_message})
+
+        # Authenticate the student with the provided password
         user = authenticate(request, email=email, password=password)
+
         if user is not None:
+            # Password matched, login the user
             login(request, user)
-            return redirect('base/main_student.html')
+            # Redirect to main student page upon successful login
+            return redirect('main_student')
         else:
-            messages.error(
-                request, "Invalid email or password. Please try again.")
-            return redirect('login_page')
+            # If the password is incorrect, show an error
+            error_message = "Invalid email or password"
+            return render(request, 'base/login.html', {'error_message': error_message})
+
     else:
         return render(request, 'base/login.html')
 
